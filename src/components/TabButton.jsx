@@ -1,12 +1,9 @@
-const TabButton = (props) => {
-  const handleClick = () => {
-    console.log("Hello world");
-  };
-
+const TabButton = ({children, onSelect}) => {
+ 
   return (
     <li>
         {/** you write just function name because it will be executed in future by react, that s why not handleClick() */}
-      <button onClick={handleClick}>{props.children}</button>
+      <button onClick={onSelect}>{children}</button>
     </li>
   );
 };

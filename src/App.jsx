@@ -5,6 +5,11 @@ import CoreConcept from "./components/CoreConcept";
 import TabButton from "./components/TabButton";
 
 const App = () => {
+  
+  const handleSelect = (text) => {
+    console.log(text);
+  }
+  
   return (
     <div>
       <Header />
@@ -32,10 +37,10 @@ const App = () => {
           <h2>Examples</h2>
           <menu>
            {/*text btw component tags - in props.children */}
-            <TabButton>Component</TabButton>
-            <TabButton>JSX</TabButton>
-            <TabButton>Props</TabButton>
-            <TabButton>State</TabButton>
+            <TabButton  onSelect={() => handleSelect('component')}>Component</TabButton>
+            <TabButton  onSelect={() => handleSelect('jsx')}>JSX</TabButton>
+            <TabButton  onSelect={() => handleSelect('Props')}>Props</TabButton>
+            <TabButton  onSelect={() => handleSelect('State')}>State</TabButton>
           </menu>
         </section>
       </main>
