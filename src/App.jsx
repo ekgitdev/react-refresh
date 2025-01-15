@@ -7,11 +7,25 @@ import { useState } from "react";
 import { EXAMPLES } from "./data";
 
 const App = () => {
-  const [selectedTopic, setSelectedTopic] = useState("components");
+  const [selectedTopic, setSelectedTopic] = useState();
 
   const handleSelect = (text) => {
     setSelectedTopic(text);
   };
+
+  /**  method 3
+    let tabContent = <p>Please select topic</p> 
+    
+    if(selectedTopic){
+      tabContent = (<div id="tab-content">
+              <h3>{EXAMPLES[selectedTopic].title} </h3>
+              <p>{EXAMPLES[selectedTopic].description} </p>
+              <pre>
+                <code>{EXAMPLES[selectedTopic].code}</code>
+              </pre>
+            </div>)
+    }
+   */
 
   return (
     <div>
@@ -47,13 +61,20 @@ const App = () => {
             <TabButton onSelect={() => handleSelect("props")}>Props</TabButton>
             <TabButton onSelect={() => handleSelect("state")}>State</TabButton>
           </menu>
-          <div id="tab-content">
-            <h3>{EXAMPLES[selectedTopic].title} </h3>
-            <p>{EXAMPLES[selectedTopic].description} </p>
-            <pre>
-              <code>{EXAMPLES[selectedTopic].code}</code>
-            </pre>
-          </div>
+          {/**Method 1 */}
+          {!selectedTopic && <p>Please select topic</p>}
+          {selectedTopic && (
+            <div id="tab-content">
+              <h3>{EXAMPLES[selectedTopic].title} </h3>
+              <p>{EXAMPLES[selectedTopic].description} </p>
+              <pre>
+                <code>{EXAMPLES[selectedTopic].code}</code>
+              </pre>
+            </div>
+          )}
+
+          {/** OR method 2:  {!selectedTopic ? <p> Please select topic </p> : <div id="tab-content"> ...</>} */}
+          {/** OR method 3: {tabContent} */}
         </section>
       </main>
     </div>
